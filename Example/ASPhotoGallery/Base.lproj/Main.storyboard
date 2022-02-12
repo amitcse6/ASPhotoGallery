@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,11 +19,59 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gh0-z5-y0s" customClass="ASPhotoGalleryClassic" customModule="ASPhotoGallery">
+                                <rect key="frame" x="0.0" y="20" width="375" height="300"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="Yf3-ed-caA"/>
+                                </constraints>
+                            </view>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z89-Oi-FpA" customClass="ASPhotoGallery" customModule="ASPhotoGallery">
+                                <rect key="frame" x="47.5" y="150" width="280" height="80"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="Eps-j3-b7B"/>
+                                    <constraint firstAttribute="height" constant="80" id="Imz-GB-xkU"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xtc-4S-Cx1">
+                                <rect key="frame" x="87.5" y="607" width="200" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="JWu-lI-s15"/>
+                                    <constraint firstAttribute="height" constant="40" id="vBO-En-jek"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Reload"/>
+                                <connections>
+                                    <action selector="reloadEvent:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="qlu-Mq-coX"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Gh0-z5-y0s" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="20" id="6Ik-qJ-u5a"/>
+                            <constraint firstItem="Gh0-z5-y0s" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="6oT-3w-uRg"/>
+                            <constraint firstItem="Xtc-4S-Cx1" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="IbM-Oc-Ldv"/>
+                            <constraint firstItem="Z89-Oi-FpA" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="UsH-Ke-sh9"/>
+                            <constraint firstItem="Z89-Oi-FpA" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="150" id="iIj-VS-L4t"/>
+                            <constraint firstAttribute="trailing" secondItem="Gh0-z5-y0s" secondAttribute="trailing" id="lcF-Vb-9jx"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="Xtc-4S-Cx1" secondAttribute="bottom" constant="20" id="ncb-TD-86t"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="photoGallery" destination="Gh0-z5-y0s" id="ZUg-1q-iLw"/>
+                        <outlet property="subPhotoGallery" destination="Z89-Oi-FpA" id="Abd-XB-vfE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="32.799999999999997" y="95.802098950524751"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

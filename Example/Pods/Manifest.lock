@@ -1,0 +1,16 @@
+PODS:
+  - ASPhotoGallery (0.1.0)
+
+DEPENDENCIES:
+  - ASPhotoGallery (from `../`)
+
+EXTERNAL SOURCES:
+  ASPhotoGallery:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  ASPhotoGallery: f787d9b0314a46965507ab50a95a5cf40326e5a8
+
+PODFILE CHECKSUM: e9be3590e4713248d142fe8cb366c00ca167c158
+
+COCOAPODS: 1.11.2

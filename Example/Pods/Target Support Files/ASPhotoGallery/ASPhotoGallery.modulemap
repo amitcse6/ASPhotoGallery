@@ -1,0 +1,6 @@
+framework module ASPhotoGallery {
+  umbrella header "ASPhotoGallery-umbrella.h"
+
+  export *
+  module * { export * }
+}
