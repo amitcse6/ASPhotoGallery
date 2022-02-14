@@ -20,13 +20,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        items = ["image0", "image1", "image2"]
-        subItems = ["image0", "image1"]
         setupGallery(photoGallery)
         setupSubGallery(subPhotoGallery)
     }
     
     func setupGallery(_ photoGallery: ASPhotoGallery) {
+        items = ["image0", "image1", "image2"]
         photoGallery.backgroundColor = .clear
         photoGallery.setLeftImage(UIImage(named: "gallery_left_arrow"))
         photoGallery.setRightImage(UIImage(named: "gallery_right_arrow"))
@@ -40,6 +39,7 @@ class ViewController: UIViewController {
     }
     
     func setupSubGallery(_ photoGallery: ASPhotoGallery) {
+        subItems = (0..<1).map({ index in return "image\(index%3)"})
         photoGallery.backgroundColor = .clear
         photoGallery.setLeftImage(UIImage(named: "bx-bxs-left-arrow"))
         photoGallery.setRightImage(UIImage(named: "bx-bxs-right-arrow"))
@@ -49,6 +49,7 @@ class ViewController: UIViewController {
         photoGallery.pagerHeight = 0
         photoGallery.containerPadding = CGSize(width: 50, height: 0)
         photoGallery.itemWidth = 50
+        photoGallery.stackViewSpacing = 8
         photoGallery.delegate = self
         photoGallery.reloadData()
     }
@@ -85,7 +86,7 @@ extension ViewController: ASPhotoGalleryDelegate {
         }else {
             let bannerView = BannerSubView()
             bannerView.tag = index
-            bannerView.imageView.image = UIImage(named: items[index])
+            bannerView.imageView.image = UIImage(named: subItems[index])
             bannerView.delegate = self
             return bannerView
         }

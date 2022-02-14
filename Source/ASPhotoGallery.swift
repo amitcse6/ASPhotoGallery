@@ -17,7 +17,7 @@ public protocol ASPhotoGalleryDelegate: AnyObject {
 public class ASPhotoGallery: UIView {
     var containerView: UIView!
     var scrollView: UIScrollView!
-    var stackView: UIStackView!
+    var hStackView: UIStackView!
     var pageView: ASPPageView!
     var isWebLoad: Bool!
     

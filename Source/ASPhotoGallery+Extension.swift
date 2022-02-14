@@ -12,7 +12,7 @@ public extension ASPhotoGallery {
     func initialization() {
         loadContainerView()
         loadScrollView()
-        loadStackView()
+        loadHStackView()
         loadSubView()
         loadLeftArrow()
         loadRightArrow()
@@ -43,11 +43,12 @@ public extension ASPhotoGallery {
         loadScrollViewConst()
     }
     
-    func loadStackView() {
-        removeViewIfExists(stackView)
-        stackView = UIStackView()
-        scrollView.addSubview(stackView)
-        loadStackViewConst()
+    
+    func loadHStackView() {
+        removeViewIfExists(hStackView)
+        hStackView = UIStackView()
+        scrollView.addSubview(hStackView)
+        loadHStackViewConst()
     }
     
     func loadPager() {
@@ -93,9 +94,10 @@ public extension ASPhotoGallery {
         removeAllData()
         if let delegate = delegate {
             numberOfItems = delegate.asPhotoGalleryNumberOfItems(self)
+            hStackView.addArrangedSubview(UIView())
             (0..<numberOfItems).enumerated().forEach { (index, _) in
                 let backView = UIView()
-                stackView.addArrangedSubview(backView)
+                hStackView.addArrangedSubview(backView)
                 backView.translatesAutoresizingMaskIntoConstraints = false
                 if let itemWidth = itemWidth {
                     backView.widthAnchor.constraint(equalToConstant: itemWidth).isActive = true
@@ -115,6 +117,7 @@ public extension ASPhotoGallery {
                 itemView.bottomAnchor.constraint(equalTo: backView.bottomAnchor, constant: 0).isActive = true
                 views.append(backView)
             }
+            hStackView.addArrangedSubview(UIView())
         }
     }
 }
@@ -129,28 +132,26 @@ extension ASPhotoGallery {
     }
     
     func loadScrollViewConst() {
-        scrollView.backgroundColor = .green
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: containerPadding.height).isActive = true
-        let leftAnchor = scrollView.leftAnchor.constraint(greaterThanOrEqualTo: containerView.leftAnchor, constant: containerPadding.width)
-        let rightAnchor = scrollView.rightAnchor.constraint(lessThanOrEqualTo: containerView.rightAnchor, constant: -containerPadding.width)
+        scrollView.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: containerPadding.width).isActive = true
+        scrollView.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -containerPadding.width).isActive = true
         scrollView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -containerPadding.height-pagerHeight).isActive = true
-        leftAnchor.priority = UILayoutPriority(1000)
-        rightAnchor.priority = UILayoutPriority(1000)
-        leftAnchor.isActive = true
-        rightAnchor.isActive = true
     }
     
-    func loadStackViewConst() {
-        stackView.axis  = .horizontal
-        stackView.distribution  = .fill
-        stackView.alignment = .fill
-        stackView.spacing   = stackViewSpacing
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 0).isActive = true
-        stackView.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 0).isActive = true
-        stackView.rightAnchor.constraint(equalTo: scrollView.rightAnchor, constant: 0).isActive = true
-        stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 0).isActive = true
+    func loadHStackViewConst() {
+        hStackView.axis  = .horizontal
+        hStackView.distribution  = .equalSpacing
+        hStackView.alignment = .fill
+        hStackView.semanticContentAttribute = .forceLeftToRight
+        hStackView.alignment = .leading
+        hStackView.spacing   = stackViewSpacing
+        hStackView.translatesAutoresizingMaskIntoConstraints = false
+        hStackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 0).isActive = true
+        hStackView.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 0).isActive = true
+        hStackView.rightAnchor.constraint(equalTo: scrollView.rightAnchor, constant: 0).isActive = true
+        hStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 0).isActive = true
+        hStackView.widthAnchor.constraint(greaterThanOrEqualTo: scrollView.widthAnchor, constant: 0).isActive = true
     }
     
     func loadPagerConst() {
@@ -180,7 +181,7 @@ extension ASPhotoGallery {
 
 extension ASPhotoGallery {
     func removeAllData() {
-        stackView.removeAllArrangedSubviews()
+        hStackView.removeAllArrangedSubviews()
         views.removeAll()
         views = []
     }

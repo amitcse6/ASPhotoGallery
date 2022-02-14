@@ -28,10 +28,9 @@
                                 </constraints>
                             </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z89-Oi-FpA" customClass="ASPhotoGallery" customModule="ASPhotoGallery">
-                                <rect key="frame" x="47.5" y="150" width="280" height="80"/>
+                                <rect key="frame" x="16" y="150" width="343" height="80"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="280" id="Eps-j3-b7B"/>
                                     <constraint firstAttribute="height" constant="80" id="Imz-GB-xkU"/>
                                 </constraints>
                             </view>
@@ -54,9 +53,11 @@
                             <constraint firstItem="Gh0-z5-y0s" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="6oT-3w-uRg"/>
                             <constraint firstItem="Xtc-4S-Cx1" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="IbM-Oc-Ldv"/>
                             <constraint firstItem="Z89-Oi-FpA" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="UsH-Ke-sh9"/>
+                            <constraint firstAttribute="trailing" secondItem="Z89-Oi-FpA" secondAttribute="trailing" constant="16" id="b1a-A7-lJG"/>
                             <constraint firstItem="Z89-Oi-FpA" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="150" id="iIj-VS-L4t"/>
                             <constraint firstAttribute="trailing" secondItem="Gh0-z5-y0s" secondAttribute="trailing" id="lcF-Vb-9jx"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="Xtc-4S-Cx1" secondAttribute="bottom" constant="20" id="ncb-TD-86t"/>
+                            <constraint firstItem="Z89-Oi-FpA" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="sQ9-57-UIq"/>
                         </constraints>
                     </view>
                     <connections>
