@@ -92,9 +92,9 @@ public extension ASPhotoGallery {
     
     func previousPage() {
         let previousSelected = visibleIndex
-        var frame: CGRect = self.scrollView.frame
+        var frame: CGRect = scrollView.frame
         let width = (isCustomScroll ? (itemWidth ?? 0) : frame.size.width)
-        let currentPage = (isCustomScroll ? CGFloat(previousSelected) :  self.scrollView.contentOffset.x / width)
+        let currentPage = CGFloat(previousSelected) //(isCustomScroll ? CGFloat(previousSelected) :  scrollView.contentOffset.x / width)
         var previousPage = currentPage - 1
         if previousPage < 0 {
             previousPage = CGFloat(numberOfItems-1)
@@ -107,9 +107,9 @@ public extension ASPhotoGallery {
     
     func nextPage() {
         let previousSelected = visibleIndex
-        var frame: CGRect = self.scrollView.frame
+        var frame: CGRect = scrollView.frame
         let width = (isCustomScroll ? (itemWidth ?? 0) : frame.size.width)
-        let currentPage = (isCustomScroll ? CGFloat(previousSelected) : self.scrollView.contentOffset.x / width)
+        let currentPage = CGFloat(previousSelected) //(isCustomScroll ? CGFloat(previousSelected) : scrollView.contentOffset.x / width)
         var nextPage = currentPage + 1
         if nextPage >= CGFloat(numberOfItems) {
             nextPage = 0
@@ -121,9 +121,9 @@ public extension ASPhotoGallery {
     }
     
     @objc func setCurrentItem() {
-        var frame: CGRect = self.scrollView.frame
+        var frame: CGRect = scrollView.frame
         let width = (isCustomScroll ? (itemWidth ?? 0) : frame.size.width)
-        let currentPage = self.visibleIndex
+        let currentPage = visibleIndex
         visibleIndex = Int(currentPage)
         frame.origin.x = width * CGFloat(currentPage)
         scrollView.scrollRectToVisible(frame, animated: true)
