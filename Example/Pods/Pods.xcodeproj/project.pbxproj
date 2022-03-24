@@ -16,8 +16,8 @@
 		898376D227B74BF200D632CD /* ASPhotoGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898376CC27B74BF200D632CD /* ASPhotoGallery.swift */; };
 		898376D327B74BF200D632CD /* ASPImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898376CD27B74BF200D632CD /* ASPImageView.swift */; };
 		898376D427B74BF200D632CD /* ASPhotoGallery+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898376CE27B74BF200D632CD /* ASPhotoGallery+Extension.swift */; };
-		898376D527B74BF200D632CD /* UIScrollView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898376CF27B74BF200D632CD /* UIScrollView+Extension.swift */; };
-		898376D727B74CA700D632CD /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898376D627B74CA700D632CD /* UIStackView+Extension.swift */; };
+		89F9B3A927EB3B0F007667BA /* ASPUIScrollView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F9B3A727EB3B0F007667BA /* ASPUIScrollView+Extension.swift */; };
+		89F9B3AA27EB3B0F007667BA /* ASPUIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F9B3A827EB3B0F007667BA /* ASPUIStackView+Extension.swift */; };
 		8AD18B277163C0845E510B3E542F978F /* Pods-ASPhotoGallery_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D5902F5C0BBD9DDBCBD985C106DC36 /* Pods-ASPhotoGallery_Tests-dummy.m */; };
 		8EC8A08F300B551C258941ACB400D592 /* Pods-ASPhotoGallery_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F9AF19646EBB6821911069D935E42A73 /* Pods-ASPhotoGallery_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9A996EFAAB6C39ABC9C2C88DEEB656C2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
@@ -68,8 +68,8 @@
 		898376CC27B74BF200D632CD /* ASPhotoGallery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ASPhotoGallery.swift; sourceTree = "<group>"; };
 		898376CD27B74BF200D632CD /* ASPImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ASPImageView.swift; sourceTree = "<group>"; };
 		898376CE27B74BF200D632CD /* ASPhotoGallery+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ASPhotoGallery+Extension.swift"; sourceTree = "<group>"; };
-		898376CF27B74BF200D632CD /* UIScrollView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Extension.swift"; sourceTree = "<group>"; };
-		898376D627B74CA700D632CD /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
+		89F9B3A727EB3B0F007667BA /* ASPUIScrollView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ASPUIScrollView+Extension.swift"; sourceTree = "<group>"; };
+		89F9B3A827EB3B0F007667BA /* ASPUIStackView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ASPUIStackView+Extension.swift"; sourceTree = "<group>"; };
 		907BB79681645348C9D0DC53800DEAC6 /* ASPhotoGallery-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ASPhotoGallery-dummy.m"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		AA46DB58FD26CFDD66257148FABE6C52 /* Pods-ASPhotoGallery_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ASPhotoGallery_Example-Info.plist"; sourceTree = "<group>"; };
@@ -193,13 +193,13 @@
 		898376C927B74BF200D632CD /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				89F9B3A727EB3B0F007667BA /* ASPUIScrollView+Extension.swift */,
+				89F9B3A827EB3B0F007667BA /* ASPUIStackView+Extension.swift */,
 				898376CB27B74BF200D632CD /* ASPPageView.swift */,
 				898376CD27B74BF200D632CD /* ASPImageView.swift */,
 				898376CC27B74BF200D632CD /* ASPhotoGallery.swift */,
 				898376CA27B74BF200D632CD /* ASPhotoGalleryClassic.swift */,
 				898376CE27B74BF200D632CD /* ASPhotoGallery+Extension.swift */,
-				898376CF27B74BF200D632CD /* UIScrollView+Extension.swift */,
-				898376D627B74CA700D632CD /* UIStackView+Extension.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -401,12 +401,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				898376D527B74BF200D632CD /* UIScrollView+Extension.swift in Sources */,
+				89F9B3A927EB3B0F007667BA /* ASPUIScrollView+Extension.swift in Sources */,
 				898376D027B74BF200D632CD /* ASPhotoGalleryClassic.swift in Sources */,
 				898376D227B74BF200D632CD /* ASPhotoGallery.swift in Sources */,
+				89F9B3AA27EB3B0F007667BA /* ASPUIStackView+Extension.swift in Sources */,
 				898376D127B74BF200D632CD /* ASPPageView.swift in Sources */,
 				17647DD9D9276CA634260BF7B4AAEBE7 /* ASPhotoGallery-dummy.m in Sources */,
-				898376D727B74CA700D632CD /* UIStackView+Extension.swift in Sources */,
 				898376D327B74BF200D632CD /* ASPImageView.swift in Sources */,
 				898376D427B74BF200D632CD /* ASPhotoGallery+Extension.swift in Sources */,
 			);

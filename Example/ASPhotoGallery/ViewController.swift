@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var photoGallery: ASPhotoGalleryClassic!
     @IBOutlet weak var subPhotoGallery: ASPhotoGallery!
+    @IBOutlet weak var subItemImageView: UIImageView!
     
     var items: [String] = []
     var subItems: [String] = []
@@ -39,7 +40,7 @@ class ViewController: UIViewController {
     }
     
     func setupSubGallery(_ photoGallery: ASPhotoGallery) {
-        subItems = (0..<1).map({ index in return "image\(index%3)"})
+        subItems = (0..<20).map({ index in return "image\(index%3)"})
         photoGallery.backgroundColor = .clear
         photoGallery.setLeftImage(UIImage(named: "bx-bxs-left-arrow"))
         photoGallery.setRightImage(UIImage(named: "bx-bxs-right-arrow"))
@@ -49,9 +50,18 @@ class ViewController: UIViewController {
         photoGallery.pagerHeight = 0
         photoGallery.containerPadding = CGSize(width: 50, height: 0)
         photoGallery.itemWidth = 50
-        photoGallery.stackViewSpacing = 8
+        photoGallery.stackViewSpacing = 0
+        photoGallery.isCustomScroll = true
+        photoGallery.arrowPadding = CGPoint(x: 8, y: 0)
+        photoGallery.arrowSize = CGSize(width: 30, height: 30)
         photoGallery.delegate = self
+        photoGallery.visibleIndex = 1
         photoGallery.reloadData()
+        self.perform(#selector(setPage), with: photoGallery, afterDelay: 0.1)
+    }
+    
+    @objc func setPage(_ sender: ASPhotoGallery) {
+        sender.setPage()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -97,6 +107,8 @@ extension ViewController: ASPhotoGalleryDelegate {
             print("index: \(index)")
         }else {
             print("subIndex: \(index)")
+            let item = subItems[index]
+            subItemImageView.image = UIImage(named: item)
         }
     }
 }

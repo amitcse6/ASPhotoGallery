@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 extension UIScrollView {
-    var asScrollCurrentPage: Int {
+    var aspScrollCurrentPage: Int {
         Int(round(self.contentOffset.x / self.frame.width))
     }
 }

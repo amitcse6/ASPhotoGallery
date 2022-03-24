@@ -9,11 +9,11 @@ import Foundation
 import UIKit
 
 extension UIStackView {
-    func addArrangedSubviews(_ subviews: [UIView]) {
+    func aspAddArrangedSubviews(_ subviews: [UIView]) {
         subviews.forEach{ self.addArrangedSubview($0) }
     }
     
-    func removeAllArrangedSubviews() {
+    func aspRemoveAllArrangedSubviews() {
         let removedSubviews = arrangedSubviews.reduce([]) { (allSubviews, subview) -> [UIView] in
             self.removeArrangedSubview(subview)
             return allSubviews + [subview]

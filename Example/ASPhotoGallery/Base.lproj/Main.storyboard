@@ -27,7 +27,7 @@
                                     <constraint firstAttribute="height" constant="300" id="Yf3-ed-caA"/>
                                 </constraints>
                             </view>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z89-Oi-FpA" customClass="ASPhotoGallery" customModule="ASPhotoGallery">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z89-Oi-FpA" customClass="ASPhotoGalleryClassic" customModule="ASPhotoGallery">
                                 <rect key="frame" x="16" y="150" width="343" height="80"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
@@ -46,22 +46,30 @@
                                     <action selector="reloadEvent:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="qlu-Mq-coX"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HDz-Pn-3Ck">
+                                <rect key="frame" x="66" y="370" width="243" height="187"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="HDz-Pn-3Ck" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="50" id="3Xi-zb-pxy"/>
                             <constraint firstItem="Gh0-z5-y0s" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="20" id="6Ik-qJ-u5a"/>
                             <constraint firstItem="Gh0-z5-y0s" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="6oT-3w-uRg"/>
                             <constraint firstItem="Xtc-4S-Cx1" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="IbM-Oc-Ldv"/>
                             <constraint firstItem="Z89-Oi-FpA" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="UsH-Ke-sh9"/>
+                            <constraint firstItem="HDz-Pn-3Ck" firstAttribute="top" secondItem="Gh0-z5-y0s" secondAttribute="bottom" constant="50" id="WMy-Hw-ect"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="HDz-Pn-3Ck" secondAttribute="trailing" constant="50" id="WRo-8m-NEE"/>
                             <constraint firstAttribute="trailing" secondItem="Z89-Oi-FpA" secondAttribute="trailing" constant="16" id="b1a-A7-lJG"/>
                             <constraint firstItem="Z89-Oi-FpA" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="150" id="iIj-VS-L4t"/>
                             <constraint firstAttribute="trailing" secondItem="Gh0-z5-y0s" secondAttribute="trailing" id="lcF-Vb-9jx"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="Xtc-4S-Cx1" secondAttribute="bottom" constant="20" id="ncb-TD-86t"/>
+                            <constraint firstItem="Xtc-4S-Cx1" firstAttribute="top" secondItem="HDz-Pn-3Ck" secondAttribute="bottom" constant="50" id="pIu-vK-IlH"/>
                             <constraint firstItem="Z89-Oi-FpA" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="16" id="sQ9-57-UIq"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="photoGallery" destination="Gh0-z5-y0s" id="ZUg-1q-iLw"/>
+                        <outlet property="subItemImageView" destination="HDz-Pn-3Ck" id="9sr-Y8-Xoy"/>
                         <outlet property="subPhotoGallery" destination="Z89-Oi-FpA" id="Abd-XB-vfE"/>
                     </connections>
                 </viewController>

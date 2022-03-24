@@ -10,6 +10,9 @@ import UIKit
 
 public extension ASPhotoGallery {
     func initialization() {
+        if let delegate = delegate {
+            numberOfItems = delegate.asPhotoGalleryNumberOfItems(self)
+        }
         loadContainerView()
         loadScrollView()
         loadHStackView()
@@ -37,7 +40,7 @@ public extension ASPhotoGallery {
         scrollView.bounces = true
         scrollView.bouncesZoom = true
         scrollView.alwaysBounceHorizontal = true
-        scrollView.isPagingEnabled = true
+        scrollView.isPagingEnabled = !isCustomScroll
         scrollView.delegate = self
         containerView.addSubview(scrollView)
         loadScrollViewConst()
@@ -92,22 +95,20 @@ public extension ASPhotoGallery {
     
     func loadSubView() {
         removeAllData()
-        if let delegate = delegate {
-            numberOfItems = delegate.asPhotoGalleryNumberOfItems(self)
-            hStackView.addArrangedSubview(UIView())
-            (0..<numberOfItems).enumerated().forEach { (index, _) in
-                let backView = UIView()
-                hStackView.addArrangedSubview(backView)
-                backView.translatesAutoresizingMaskIntoConstraints = false
-                if let itemWidth = itemWidth {
-                    backView.widthAnchor.constraint(equalToConstant: itemWidth).isActive = true
-                }else {
-                    backView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: 0).isActive = true
-                }
-                backView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, constant: 0).isActive = true
-                backView.tag = index
-                backView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectItem)))
-                
+        hStackView.addArrangedSubview(UIView())
+        (0..<numberOfItems).enumerated().forEach { (index, _) in
+            let backView = UIView()
+            hStackView.addArrangedSubview(backView)
+            backView.translatesAutoresizingMaskIntoConstraints = false
+            if let itemWidth = itemWidth {
+                backView.widthAnchor.constraint(equalToConstant: itemWidth).isActive = true
+            }else {
+                backView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: 0).isActive = true
+            }
+            backView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, constant: 0).isActive = true
+            backView.tag = index
+            backView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(selectItem)))
+            if let delegate = delegate {
                 let itemView = delegate.asPhotoGallery(self, itemAt: index)
                 backView.addSubview(itemView)
                 itemView.translatesAutoresizingMaskIntoConstraints = false
@@ -117,8 +118,8 @@ public extension ASPhotoGallery {
                 itemView.bottomAnchor.constraint(equalTo: backView.bottomAnchor, constant: 0).isActive = true
                 views.append(backView)
             }
-            hStackView.addArrangedSubview(UIView())
         }
+        hStackView.addArrangedSubview(UIView())
     }
 }
 
@@ -164,24 +165,24 @@ extension ASPhotoGallery {
     
     func leftArrowConst() {
         leftArrow?.translatesAutoresizingMaskIntoConstraints = false
-        leftArrow?.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 0).isActive = true
-        leftArrow?.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor, constant: 0).isActive = true
-        leftArrow?.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        leftArrow?.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        leftArrow?.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: arrowPadding.x).isActive = true
+        leftArrow?.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor, constant: arrowPadding.y).isActive = true
+        leftArrow?.widthAnchor.constraint(equalToConstant: arrowSize.width).isActive = true
+        leftArrow?.heightAnchor.constraint(equalToConstant: arrowSize.height).isActive = true
     }
     
     func rightArrowConst() {
         rightArrow?.translatesAutoresizingMaskIntoConstraints = false
-        rightArrow?.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: 0).isActive = true
-        rightArrow?.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor, constant: 0).isActive = true
-        rightArrow?.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        rightArrow?.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        rightArrow?.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -arrowPadding.x).isActive = true
+        rightArrow?.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor, constant: arrowPadding.y).isActive = true
+        rightArrow?.widthAnchor.constraint(equalToConstant: arrowSize.width).isActive = true
+        rightArrow?.heightAnchor.constraint(equalToConstant: arrowSize.height).isActive = true
     }
 }
 
 extension ASPhotoGallery {
     func removeAllData() {
-        hStackView.removeAllArrangedSubviews()
+        hStackView.aspRemoveAllArrangedSubviews()
         views.removeAll()
         views = []
     }
