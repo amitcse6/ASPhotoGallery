@@ -24,14 +24,14 @@
                     <rect key="frame" x="0.0" y="0.0" width="716" height="280"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hv2-TY-Awy">
-                            <rect key="frame" x="0.0" y="0.0" width="716" height="280"/>
+                            <rect key="frame" x="4" y="0.0" width="708" height="280"/>
                         </imageView>
                     </subviews>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="Hv2-TY-Awy" secondAttribute="trailing" id="Vjb-7E-YQQ"/>
+                        <constraint firstAttribute="trailing" secondItem="Hv2-TY-Awy" secondAttribute="trailing" constant="4" id="Vjb-7E-YQQ"/>
                         <constraint firstAttribute="bottom" secondItem="Hv2-TY-Awy" secondAttribute="bottom" id="fWM-FA-BAU"/>
                         <constraint firstItem="Hv2-TY-Awy" firstAttribute="top" secondItem="bHw-3i-FSI" secondAttribute="top" id="mcz-Q5-YzP"/>
-                        <constraint firstItem="Hv2-TY-Awy" firstAttribute="leading" secondItem="bHw-3i-FSI" secondAttribute="leading" id="xJE-UP-sBg"/>
+                        <constraint firstItem="Hv2-TY-Awy" firstAttribute="leading" secondItem="bHw-3i-FSI" secondAttribute="leading" constant="4" id="xJE-UP-sBg"/>
                     </constraints>
                 </view>
             </subviews>

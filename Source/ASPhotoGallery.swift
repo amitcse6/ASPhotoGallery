@@ -12,6 +12,7 @@ public protocol ASPhotoGalleryDelegate: AnyObject {
     func asPhotoGalleryNumberOfItems(_ gallery: ASPhotoGallery) -> Int
     func asPhotoGallery(_ gallery: ASPhotoGallery, itemAt index: Int) -> UIView
     func asPhotoGallery(_ gallery: ASPhotoGallery, selected view: UIView, didSelectAt index: Int)
+    func asPhotoGallery(_ gallery: ASPhotoGallery, index previous: Int, index next: Int, is forward: Bool)
 }
 
 public class ASPhotoGallery: UIView {
@@ -40,6 +41,7 @@ public class ASPhotoGallery: UIView {
     public var stackViewSpacing: CGFloat = 0
     public var scaleAspectFit: ContentMode = .scaleAspectFill
     public var isCustomScroll = false
+    public var selectedItemScroll = true
     public var arrowSize: CGSize = CGSize(width: 40, height: 40)
     public var arrowPadding: CGPoint = CGPoint(x: 8, y: 0)
     
@@ -64,7 +66,6 @@ public extension ASPhotoGallery {
     }
     
     @objc func pageControlSelectionAction(_ sender: UIPageControl) {
-        print("pageIndex: \(sender.currentPage)")
         currentPage(sender.currentPage)
     }
     
@@ -77,55 +78,63 @@ public extension ASPhotoGallery {
     }
     
     @objc func selectItem(_ sender: UITapGestureRecognizer) {
+        if selectedItemScroll {
+            visibleIndex = sender.view!.tag
+            setCurrentItem()
+        }
         delegate?.asPhotoGallery(self, selected: sender.view!, didSelectAt: sender.view!.tag)
     }
     
     func currentPage(_ pageIndex: Int) {
-        //visibleIndex = pageIndex
-        //frame.origin.x = frame.size.width * CGFloat(pageIndex)
-        //self.scrollView.scrollRectToVisible(frame, animated: true)
+        visibleIndex = pageIndex
+        setCurrentItem()
     }
     
     func previousPage() {
+        let previousSelected = visibleIndex
         var frame: CGRect = self.scrollView.frame
         let width = (isCustomScroll ? (itemWidth ?? 0) : frame.size.width)
-        let currentPage = self.scrollView.contentOffset.x / width
+        let currentPage = (isCustomScroll ? CGFloat(previousSelected) :  self.scrollView.contentOffset.x / width)
         var previousPage = currentPage - 1
         if previousPage < 0 {
             previousPage = CGFloat(numberOfItems-1)
         }
         visibleIndex = Int(previousPage)
-        
         frame.origin.x = width * CGFloat(previousPage)
-        self.scrollView.scrollRectToVisible(frame, animated: true)
+        scrollView.scrollRectToVisible(frame, animated: true)
+                           self.delegate?.asPhotoGallery(self, index: previousSelected, index: visibleIndex, is: false)
     }
     
     func nextPage() {
+        let previousSelected = visibleIndex
         var frame: CGRect = self.scrollView.frame
         let width = (isCustomScroll ? (itemWidth ?? 0) : frame.size.width)
-        let currentPage = self.scrollView.contentOffset.x / width
+        let currentPage = (isCustomScroll ? CGFloat(previousSelected) : self.scrollView.contentOffset.x / width)
         var nextPage = currentPage + 1
         if nextPage >= CGFloat(numberOfItems) {
             nextPage = 0
         }
         visibleIndex = Int(nextPage)
         frame.origin.x = width * CGFloat(nextPage)
-        self.scrollView.scrollRectToVisible(frame, animated: true)
+        scrollView.scrollRectToVisible(frame, animated: true)
+        delegate?.asPhotoGallery(self, index: previousSelected, index: visibleIndex, is: true)
     }
     
-    @objc func setPage() {
+    @objc func setCurrentItem() {
         var frame: CGRect = self.scrollView.frame
         let width = (isCustomScroll ? (itemWidth ?? 0) : frame.size.width)
         let currentPage = self.visibleIndex
         visibleIndex = Int(currentPage)
         frame.origin.x = width * CGFloat(currentPage)
-        self.scrollView.scrollRectToVisible(frame, animated: true)
+        scrollView.scrollRectToVisible(frame, animated: true)
     }
 }
 
 extension ASPhotoGallery: UIScrollViewDelegate {
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        visibleIndex = scrollView.aspScrollCurrentPage
+        if !isCustomScroll {
+            visibleIndex = scrollView.aspScrollCurrentPage
+        }
         pageView.pageControl.currentPage = visibleIndex
     }
 }

@@ -57,11 +57,11 @@ class ViewController: UIViewController {
         photoGallery.delegate = self
         photoGallery.visibleIndex = 1
         photoGallery.reloadData()
-        self.perform(#selector(setPage), with: photoGallery, afterDelay: 0.1)
+        self.perform(#selector(setCurrentItem), with: photoGallery, afterDelay: 0.1)
     }
     
-    @objc func setPage(_ sender: ASPhotoGallery) {
-        sender.setPage()
+    @objc func setCurrentItem(_ sender: ASPhotoGallery) {
+        sender.setCurrentItem()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,6 +78,15 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: ASPhotoGalleryDelegate {
+    func asPhotoGallery(_ gallery: ASPhotoGallery, index previous: Int, index next: Int, is forward: Bool) {
+        if gallery == photoGallery {
+        }else {
+            let item = subItems[next]
+            subItemImageView.image = UIImage(named: item)
+            gallery.views.enumerated().forEach { (_index, view) in view.backgroundColor = next == _index ? .red : .clear }
+        }
+    }
+    
     func asPhotoGalleryNumberOfItems(_ gallery: ASPhotoGallery) -> Int {
         if gallery == photoGallery {
             return items.count
@@ -104,11 +113,10 @@ extension ViewController: ASPhotoGalleryDelegate {
     
     func asPhotoGallery(_ gallery: ASPhotoGallery, selected view: UIView, didSelectAt index: Int) {
         if gallery == photoGallery {
-            print("index: \(index)")
         }else {
-            print("subIndex: \(index)")
             let item = subItems[index]
             subItemImageView.image = UIImage(named: item)
+            gallery.views.enumerated().forEach { (_index, view) in view.backgroundColor = _index == index ? .red : .clear }
         }
     }
 }
